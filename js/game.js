@@ -1,50 +1,50 @@
-var canvas = document.createElement("canvas");
-var ctx = canvas.getContext("2d");
+let canvas = document.createElement("canvas");
+let ctx = canvas.getContext("2d");
 canvas.width = 144;
 canvas.height = 256;
 document.body.appendChild(canvas);
 //bg image
-var bgReady = false;
-var bgImage = new Image();
+let bgReady = false;
+let bgImage = new Image();
 bgImage.onload = function () {
 	bgReady = true;
 };
 bgImage.src = "images/background.png";
 //bird image
-var birdReady = false;
-var birdImage = new Image();
+let birdReady = false;
+let birdImage = new Image();
 birdImage.onload = function()
 {
 	birdReady=true;
 }
 birdImage.src="images/bird.png";
 //first upper bar
-var upper1Ready=false;
-var upper1Image = new Image();
+let upper1Ready=false;
+let upper1Image = new Image();
 upper1Image.onload = function() {
 	upper1Ready=true;
 }
 upper1Image.src="images/upper.png";
 
 //second upper bar
-var upper2Ready=false;
-var upper2Image = new Image();
+let upper2Ready=false;
+let upper2Image = new Image();
 upper2Image.onload = function() {
 	upper2Ready=true;
 }
 upper2Image.src="images/upper.png";
 
 //third upper bar
-var upper3Ready=false;
-var upper3Image = new Image();
+let upper3Ready=false;
+let upper3Image = new Image();
 upper3Image.onload = function() {
 	upper3Ready=true;
 }
 upper3Image.src="images/upper.png";
 
 //first lower bar
-var lower1Ready=false;
-var lower1Image = new Image();
+let lower1Ready=false;
+let lower1Image = new Image();
 lower1Image.onload = function() {
 	lower1Ready=true;
 }
@@ -52,22 +52,22 @@ lower1Image.src="images/lower.png";
 
 
 //second lower bar
-var lower2Ready=false;
-var lower2Image = new Image();
+let lower2Ready=false;
+let lower2Image = new Image();
 lower2Image.onload = function() {
 	lower2Ready=true;
 }
 lower2Image.src="images/lower.png";
 
 //third lower bar
-var lower3Ready=false;
-var lower3Image = new Image();
+let lower3Ready=false;
+let lower3Image = new Image();
 lower3Image.onload = function() {
 	lower3Ready=true;
 }
 lower3Image.src="images/lower.png";
 
-var bird = {
+let bird = {
 xspeed : 0,
 yspeed : 0,
 xacc : 0,
@@ -76,38 +76,38 @@ x : 2,
 y : 2,
 score : 0
 };
-var upper1 = {
+let upper1 = {
 	xspeed : -30,
 	x : 20,
 	y : -100
 }
-var upper2 = {
+let upper2 = {
 	xspeed : -30,
 	x : 75,
 	y : -50
 }
-var upper3 = {
+let upper3 = {
 	xspeed : -30,
 	x : 130,
 	y : -70
 }
 
-var lower1 = {
+let lower1 = {
 	xspeed : -30,
 	x : 20,
 	y : 150
 }
-var lower2 = {
+let lower2 = {
 	xspeed : -30,
 	x : 75,
 	y : 135
 }
-var lower3 = {
+let lower3 = {
 	xspeed : -30,
 	x : 130,
 	y : 160
 }
-var keysDown = {};
+let keysDown = {};
 //adding key listeners
 addEventListener("keydown", function (e) {
 	keysDown[e.keyCode] = true;
@@ -119,17 +119,17 @@ addEventListener("keyup", function (e) {
 }, false);
 
 //function to reset game
-var reset = function () {
+let reset = function () {
 	bird.xspeed=0;
 	bird.yspeed=0;
 	bird.x=0;
 	bird.y=120;
 	bird.score=0;
 };
-var f=0;
-var difficulty=-40;
+let f=0;
+let difficulty=-40;
 // function that is called a lot
-var update = function (modifier) 
+let update = function (modifier) 
 {
 	bird.score+=modifier;
 	if (38 in keysDown && f==0) 
@@ -207,7 +207,7 @@ var update = function (modifier)
 };
 
 //function to render on the screen
-var render = function () {
+let render = function () {
 	if (bgReady) {
 		ctx.drawImage(bgImage, 0, 0);
 	}
@@ -248,14 +248,14 @@ var render = function () {
 };
 
 // the main loop of the game
-var main = function () {
-	var now = Date.now();
-	var delta = now - then;
+let main = function () {
+	let now = Date.now();
+	let delta = now - then;
 	update(delta / 1000);
 	render();
 	then = now;
 	requestAnimationFrame(main);
 };
-var then = Date.now();
+let then = Date.now();
 reset();
 main();
